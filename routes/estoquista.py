@@ -28,7 +28,7 @@ def estoque_disponivel():
         return redirect(url_for('auth.logout'))
 
     itens = Item.query.all()
-    return render_template('estoquista/estoque.html', itens=itens)
+    return render_template('estoquista/estoque_disponivel.html', itens=itens)
 
 
 # ---------------- Cadastrar Novo Item ----------------
@@ -47,7 +47,7 @@ def cadastrar_item():
         flash('Item cadastrado com sucesso!', 'success')
         return redirect(url_for('estoquista.estoque_disponivel'))
 
-    return render_template('estoquista/cadastrar_item.html')
+    return render_template('estoquista/novo_item.html')
 
 
 # ---------------- Atualizar Item Existente ----------------
@@ -73,7 +73,7 @@ def entrada_estoque():
         flash('Item atualizado com sucesso!', 'success')
         return redirect(url_for('estoquista.estoque_disponivel'))
 
-    return render_template('estoquista/entrada.html', itens=itens)
+    return render_template('estoquista/entrada_estoque.html', itens=itens)
 
 
 # ---------------- Histórico de Movimentações ----------------
