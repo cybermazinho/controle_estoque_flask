@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard Estoquista{% endblock %}
+{% block content %}
+<h2 class="text-2xl font-bold mb-4">Ordens de Serviço Pendentes</h2>
+
+<div class="mb-6 flex gap-4">
+    <a href="{{ url_for('estoquista.movimentacoes') }}" 
+       class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+       Ver Histórico de Movimentação
+    </a>
+    <a href="{{ url_for('estoquista.entrada_estoque') }}" 
+       class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
+       Atualizar Item
+    </a>
+    <a href="{{ url_for('estoquista.estoque_disponivel') }}" 
+       class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition">
+       Verificar Estoque Atual
+    </a>
+     <a href="{{ url_for('estoquista.cadastrar_item') }}" 
+       class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 transition">
+       Cadastrar Novo Item
+    </a>
+</div>
+
+<table class="w-full table-auto border-collapse border border-gray-300">
+    <thead>
+        <tr class="bg-gray-200">
+            <th class="border border-gray-300 p-2">ID</th>
+            <th class="border border-gray-300 p-2">Descrição</th>
+            <th class="border border-gray-300 p-2">Data Criação</th>
+            <th class="border border-gray-300 p-2">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for os in ordens %}
+        <tr>
+            <td class="border border-gray-300 p-2">{{ os.id }}</td>
+            <td class="border border-gray-300 p-2">{{ os.descricao }}</td>
+            <td class="border border-gray-300 p-2">{{ os.data_criacao.strftime('%d/%m/%Y %H:%M') }}</td>
+            <td class="border border-gray-300 p-2">
+                <a href="{{ url_for('estoquista.aprovar_os', os_id=os.id) }}" class="text-blue-600 underline">Aprovar / Rejeitar</a>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="4" class="p-4 text-center">Nenhuma Ordem de Serviço pendente.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

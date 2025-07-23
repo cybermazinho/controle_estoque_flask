@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard Operador{% endblock %}
+{% block content %}
+<h2 class="text-2xl font-bold mb-4">Minhas Ordens de Serviço</h2>
+<a href="{{ url_for('operador.nova_os') }}" class="bg-black text-white px-4 py-2 rounded mb-4 inline-block">Nova O.S.</a>
+
+<table class="w-full table-auto border-collapse border border-gray-300">
+    <thead>
+        <tr class="bg-gray-200">
+            <th class="border border-gray-300 p-2">ID</th>
+            <th class="border border-gray-300 p-2">Descrição</th>
+            <th class="border border-gray-300 p-2">Status</th>
+            <th class="border border-gray-300 p-2">Data Criação</th>
+            <th class="border border-gray-300 p-2">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for os in ordens %}
+        <tr>
+            <td class="border border-gray-300 p-2">{{ os.id }}</td>
+            <td class="border border-gray-300 p-2">{{ os.descricao }}</td>
+            <td class="border border-gray-300 p-2">{{ os.status }}</td>
+            <td class="border border-gray-300 p-2">{{ os.data_criacao.strftime('%d/%m/%Y %H:%M') }}</td>
+            <td class="border border-gray-300 p-2">
+                {% if os.status == 'CONCLUÍDA' %}
+                    -
+                {% else %}
+                    <a href="#" class="text-blue-600 underline">Detalhes</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="5" class="p-4 text-center">Nenhuma Ordem de Serviço encontrada.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

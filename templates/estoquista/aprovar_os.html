@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Aprovar Ordem de Serviço{% endblock %}
+{% block content %}
+<h2 class="text-2xl font-bold mb-4">Aprovar ou Rejeitar Ordem de Serviço #{{ ordem.id }}</h2>
+
+<p><strong>Descrição:</strong> {{ ordem.descricao }}</p>
+<p><strong>Local do Serviço:</strong> {{ ordem.local_servico }}</p>
+<p><strong>Cliente:</strong> {{ ordem.nome_cliente }}</p>
+
+<form method="POST" class="mt-4">
+    <button type="submit" name="decisao" value="aprovar" class="bg-green-600 text-white px-4 py-2 rounded mr-2">Aprovar</button>
+    <button type="submit" name="decisao" value="rejeitar" class="bg-red-600 text-white px-4 py-2 rounded">Rejeitar</button>
+</form>
+
+<a href="{{ url_for('estoquista.dashboard') }}" class="inline-block mt-4 text-blue-600 underline">Voltar</a>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Atualiza Estoque{% endblock %}
+{% block content %}
+<form method="POST">
+  <label for="item_id">Item:</label>
+  <select name="item_id" required>
+    {% for item in itens %}
+      <option value="{{ item.id }}">{{ item.nome }}</option>
+    {% endfor %}
+  </select>
+  <br>
+  <label for="quantidade">Quantidade:</label>
+  <input type="number" name="quantidade" min="1" required>
+  <br>
+  <button type="submit">Adicionar ao Estoque</button>
+</form>
+<a href="{{ url_for('estoquista.dashboard') }}" 
+   class="inline-block mt-4 text-blue-600 underline hover:text-blue-800 transition">
+   Voltar
+</a>
+{% endblock %}
