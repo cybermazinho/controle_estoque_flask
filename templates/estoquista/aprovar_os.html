@@ -8,8 +8,8 @@
 <p><strong>Cliente:</strong> {{ ordem.nome_cliente }}</p>
 
 <form method="POST" class="mt-4">
-    <button type="submit" name="decisao" value="aprovar" class="bg-green-600 text-white px-4 py-2 rounded mr-2">Aprovar</button>
-    <button type="submit" name="decisao" value="rejeitar" class="bg-red-600 text-white px-4 py-2 rounded">Rejeitar</button>
+    <button type="submit" name="acao" value="aprovar" class="bg-green-600 text-white px-4 py-2 rounded mr-2">Aprovar</button>
+    <button type="submit" name="acao" value="rejeitar" class="bg-red-600 text-white px-4 py-2 rounded">Rejeitar</button>
 </form>
 
 <a href="{{ url_for('estoquista.dashboard') }}" class="inline-block mt-4 text-blue-600 underline">Voltar</a>
